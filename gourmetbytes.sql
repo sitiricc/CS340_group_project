@@ -25,8 +25,8 @@ CREATE OR REPLACE TABLE Recipes (
     recipeID INT AUTO_INCREMENT UNIQUE NOT NULL,
     title VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    prepTimeInMinutes INT,
-    cookTimeInMinutes INT,
+    prepTimeInMin INT,
+    cookTimeInMin INT,
     servingSize INT,
     instructions VARCHAR(255) NOT NULL,
     dateAdded DATE,
@@ -88,8 +88,8 @@ INSERT INTO Recipes (
     recipeID, 
     title, 
     description, 
-    prepTimeInMinutes, 
-    cookTimeInMinutes, 
+    prepTimeInMin, 
+    cookTimeInMin, 
     servingSize, 
     instructions, 
     dateAdded
@@ -137,7 +137,7 @@ INSERT INTO Ingredients(name, category, unitOfMeasurement) VALUES (:nameInput, :
 
 
 /*Creates a new recipe */
-INSERT INTO Recipes(title, description, prepTime, cookTime, servingSize, instructions, dateAdded) VALUES (:titleInput, :descriptionInput, :prepTimeInput, :cookTimeInput, :servingSizeInput, :instructionsInput, :dateAddedInput);
+INSERT INTO Recipes(title, description, prepTimeInMin, cookTimeinMin, servingSize, instructions, dateAdded) VALUES (:titleInput, :descriptionInput, :prepTimeInMinInput, :cookTimeInMinInput, :servingSizeInput, :instructionsInput, :dateAddedInput);
 
 
 /*Creates a new review */
@@ -164,7 +164,7 @@ DELETE FROM Users WHERE userID = :userIDInput;
 
 
 /*Updates a review*/
-UPDATE FROM Recipes SET title = :titleInput, description = :descriptionInput, prepTime = :prepTimeInput, cookTime = :cookTimeInput, servingSize = :servingSizeInput, instructions = :instructionsInput, dateAdded = :dateAddedInput WHERE recipeID = :recipeIDInput;
+UPDATE FROM Recipes SET title = :titleInput, description = :descriptionInput, prepTimeInMin = :prepTimeinMinInput, cookTimeInMin = :cookTimeInMinInput, servingSize = :servingSizeInput, instructions = :instructionsInput, dateAdded = :dateAddedInput WHERE recipeID = :recipeIDInput;
 
 /*Updates a user*/
 UPDATE FROM Users SET username = :usernameInput, email = :emailInput, password = :passwordInput, dateJoined = :dateJoinedInput WHERE userID = :userIDInput;
