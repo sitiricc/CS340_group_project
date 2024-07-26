@@ -3,7 +3,7 @@ SET AUTOCOMMIT = 0;
 
 
 /*Creates a table for users */
-CREATE OR REPLACE TABLE User (
+CREATE OR REPLACE TABLE Users (
     userID INT AUTO_INCREMENT UNIQUE NOT NULL,
     username VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
@@ -13,54 +13,55 @@ CREATE OR REPLACE TABLE User (
 );
 
 /* Creates a table for ingredients*/
-CREATE OR REPLACE TABLE Ingredient (
+CREATE OR REPLACE TABLE Ingredients (
     ingredientID INT AUTO_INCREMENT UNIQUE NOT NULL,
     name VARCHAR(255) NOT NULL,
-    category VARCHAR(255) NOT NULL,
+    category VARCHAR(45) NOT NULL,
     unitOfMeasurement VARCHAR(255),
     PRIMARY KEY (ingredientID)
 );
 
 
 /*Creates a table for recipes */
-CREATE OR REPLACE TABLE Recipe (
+CREATE OR REPLACE TABLE Recipes (
     recipeID INT AUTO_INCREMENT UNIQUE NOT NULL,
     title VARCHAR(255) NOT NULL,
-    description VARCHAR(255) NOT NULL,
+    description VARCHAR(45) NOT NULL,
     prepTime INT,
     cookTime INT,
     servingSize INT,
-    instructions VARCHAR(255) NOT NULL,
+    instructions VARCHAR(45) NOT NULL,
     dateAdded DATE,
     PRIMARY KEY (recipeID)
 );
 
 /*Creates a table for reviews */
-CREATE OR REPLACE TABLE Review (
+CREATE OR REPLACE TABLE Reviews (
     reviewID INT AUTO_INCREMENT UNIQUE NOT NULL,
     recipeID INT,
     userID INT,
     rating INT CHECK (rating BETWEEN 1 AND 5),
-    comment VARCHAR(255),
+    comment VARCHAR(45),
     datePosted DATE,
     PRIMARY KEY (reviewID),
-    FOREIGN KEY (recipeID) REFERENCES Recipe(recipeID),
-    FOREIGN KEY (userID) REFERENCES User(userID)
+    FOREIGN KEY (recipeID) REFERENCES Recipes(recipeID),
+    FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
 /*Creates a table for recipe ingredients */
-CREATE OR REPLACE TABLE RecipeIngredient (
+CREATE OR REPLACE TABLE RecipeIngredients (
     recipeID INT,
     ingredientID INT,
     quantity VARCHAR(255),
+    unitOfMeasurement VARCHAR(255),
     PRIMARY KEY (recipeID, ingredientID),
-    FOREIGN KEY (recipeID) REFERENCES Recipe(recipeID),
-    FOREIGN KEY (ingredientID) REFERENCES Ingredient(ingredientID)
+    FOREIGN KEY (recipeID) REFERENCES Recipes(recipeID),
+    FOREIGN KEY (ingredientID) REFERENCES Ingredients(ingredientID)
 );
 
 
 /*Inserts sample data into the User table */
-INSERT INTO User (
+INSERT INTO Users (
     userID, 
     username, 
     email, 
@@ -97,7 +98,7 @@ INSERT INTO User (
 
 
 /*Inserts sample data into the Ingredient table */
-INSERT INTO Ingredient 
+INSERT INTO Ingredients 
 (
     ingredientID, 
     name, 
@@ -130,8 +131,8 @@ INSERT INTO Ingredient
     'tsp'
     );
 
-/*Inserts sample data into the Recipe table */
-INSERT INTO Recipe (recipeID, title, description, prepTime, cookTime, servingSize, instructions, dateAdded) VALUES
+/*Inserts sample data into the Recipes table */
+INSERT INTO Recipes (recipeID, title, description, prepTime, cookTime, servingSize, instructions, dateAdded) VALUES
 (
     54534584,
     'Salted Caramel Brownies',
@@ -175,7 +176,7 @@ INSERT INTO Recipe (recipeID, title, description, prepTime, cookTime, servingSiz
 
 
 /*Inserts sample data into the Review table */
-INSERT INTO Review (reviewID, recipeID, userID, rating, comment, datePosted) VALUES
+INSERT INTO Reviews (reviewID, recipeID, userID, rating, comment, datePosted) VALUES
 (
     8545662,
     54534584,
@@ -210,7 +211,7 @@ INSERT INTO Review (reviewID, recipeID, userID, rating, comment, datePosted) VAL
 );
 
 /*Inserts sample data into the RecipeIngredient table */
-INSERT INTO RecipeIngredient (recipeID, ingredientID, quantity) VALUES
+INSERT INTO RecipeIngredients (recipeID, ingredientID, quantity) VALUES
 (
     54534584,
     256722,
@@ -234,89 +235,89 @@ INSERT INTO RecipeIngredient (recipeID, ingredientID, quantity) VALUES
 
 
 /*Creates a new user */
-INSERT INTO User(username, email, password, dateJoined) VALUES (:usernameInput, :emailInput, :passwordInput, :dateJoinedInput);
+INSERT INTO Users(username, email, password, dateJoined) VALUES (:usernameInput, :emailInput, :passwordInput, :dateJoinedInput);
 
 
 /*Creates a new ingredient */
-INSERT INTO Ingredient(name, category, unitOfMeasurement) VALUES (:nameInput, :categoryInput, :unitOfMeasurementInput);
+INSERT INTO Ingredients(name, category, unitOfMeasurement) VALUES (:nameInput, :categoryInput, :unitOfMeasurementInput);
 
 
 /*Creates a new recipe */
-INSERT INTO Recipe(title, description, prepTime, cookTime, servingSize, instructions, dateAdded) VALUES (:titleInput, :descriptionInput, :prepTimeInput, :cookTimeInput, :servingSizeInput, :instructionsInput, :dateAddedInput);
+INSERT INTO Recipes(title, description, prepTime, cookTime, servingSize, instructions, dateAdded) VALUES (:titleInput, :descriptionInput, :prepTimeInput, :cookTimeInput, :servingSizeInput, :instructionsInput, :dateAddedInput);
 
 
 /*Creates a new review */
-INSERT INTO Review(recipeID, userID, rating, comment, datePosted) VALUES (:recipeIDInput, :userIDInput, :ratingInput, :commentInput, :datePostedInput);
+INSERT INTO Reviews(recipeID, userID, rating, comment, datePosted) VALUES (:recipeIDInput, :userIDInput, :ratingInput, :commentInput, :datePostedInput);
 
 /*Creates a new recipe ingredient */
-INSERT INTO RecipeIngredient(recipeID, ingredientID, quantity) VALUES (:recipeIDInput, :ingredientIDInput, :quantityInput);
+INSERT INTO RecipeIngredients(recipeID, ingredientID, quantity) VALUES (:recipeIDInput, :ingredientIDInput, :quantityInput, :unitOfMeasurementInput);
 
 
 /* Deletes a recipe ingredient */
-DELETE FROM RecipeIngredient WHERE recipeID = :recipeIDInput AND ingredientID = :ingredientIDInput;
+DELETE FROM RecipeIngredients WHERE recipeID = :recipeIDInput AND ingredientID = :ingredientIDInput AND unitOfMeasurement = :unitOfMeasurementInput;
 
 /* Deletes an ingredient*/
-DELETE FROM Ingredient WHERE ingredientID = :ingredientIDInput;
+DELETE FROM Ingredients WHERE ingredientID = :ingredientIDInput;
 
 /* Deletes a review */
-DELETE FROM Review WHERE reviewID = :reviewIDInput;
+DELETE FROM Reviews WHERE reviewID = :reviewIDInput;
 
 /* Deletes from a recipe*/
-DELETE FROM Recipe WHERE recipeID = :recipeIDInput;
+DELETE FROM Recipes WHERE recipeID = :recipeIDInput;
 
 /*Deletes from a user*/
-DELETE FROM User WHERE userID = :userIDInput;
+DELETE FROM Users WHERE userID = :userIDInput;
 
 
 /*Updates a review*/
-UPDATE FROM Recipe SET title = :titleInput, description = :descriptionInput, prepTime = :prepTimeInput, cookTime = :cookTimeInput, servingSize = :servingSizeInput, instructions = :instructionsInput, dateAdded = :dateAddedInput WHERE recipeID = :recipeIDInput;
+UPDATE FROM Recipes SET title = :titleInput, description = :descriptionInput, prepTime = :prepTimeInput, cookTime = :cookTimeInput, servingSize = :servingSizeInput, instructions = :instructionsInput, dateAdded = :dateAddedInput WHERE recipeID = :recipeIDInput;
 
 /*Updates a user*/
-UPDATE FROM User SET username = :usernameInput, email = :emailInput, password = :passwordInput, dateJoined = :dateJoinedInput WHERE userID = :userIDInput;
+UPDATE FROM Users SET username = :usernameInput, email = :emailInput, password = :passwordInput, dateJoined = :dateJoinedInput WHERE userID = :userIDInput;
 
 /*Updates an ingredient*/
-UPDATE FROM Ingredient SET name = :nameInput, category = :categoryInput, unitOfMeasurement = :unitOfMeasurementInput WHERE ingredientID = :ingredientIDInput;
+UPDATE FROM Ingredients SET name = :nameInput, category = :categoryInput, unitOfMeasurement = :unitOfMeasurementInput WHERE ingredientID = :ingredientIDInput;
 
 /*Updates a recipe ingredient*/
-UPDATE FROM RecipeIngredient SET quantity = :quantityInput WHERE recipeID = :recipeIDInput AND ingredientID = :ingredientIDInput;
+UPDATE FROM RecipeIngredients SET quantity = :quantityInput WHERE recipeID = :recipeIDInput AND ingredientID = :ingredientIDInput; AND unitOfMeasurement = :unitOfMeasurementInput;
 
 /*Updates a review*/
-UPDATE FROM Review SET recipeID = :recipeIDInput, userID = :userIDInput, rating = :ratingInput, comment = :commentInput, datePosted = :datePostedInput WHERE reviewID = :reviewIDInput;
+UPDATE FROM Reviews SET recipeID = :recipeIDInput, userID = :userIDInput, rating = :ratingInput, comment = :commentInput, datePosted = :datePostedInput WHERE reviewID = :reviewIDInput;
 
 
 /* Display user table*/
-SELECT * FROM User;
+SELECT * FROM Users;
 
 /* Display ingredient table*/
-SELECT * FROM Ingredient;
+SELECT * FROM Ingredients;
 
 /* Display recipe table*/
-SELECT * FROM Recipe;
+SELECT * FROM Recipes;
 
 /* Display review table*/
-SELECT * FROM Review;
+SELECT * FROM Reviews;
 
 /* Display recipe ingredient table*/
-SELECT * FROM RecipeIngredient;
+SELECT * FROM RecipeIngredients;
 
 /* Show all reviews for a specific recipe */
-SELECT User.username, Recipe.title
-FROM User
-INNER JOIN Review ON User.userID = Review.userID
-INNER JOIN Recipe ON Review.recipeID = Recipe.recipeID;
+SELECT Users.username, Recipes.title
+FROM Users
+INNER JOIN Reviews ON Users.userID = Reviews.userID
+INNER JOIN Recipes ON Reviews.recipeID = Recipes.recipeID;
 
 /* Show all ingredients for a specific recipe */
-SELECT Ingredient.name, Recipe.title
-FROM Ingredient
-INNER JOIN RecipeIngredient ON Ingredient.ingredientID = RecipeIngredient.ingredientID
+SELECT Ingredients.name, Recipe.title
+FROM Ingredients
+INNER JOIN RecipeIngredients ON Ingredients.ingredientID = RecipeIngredients.ingredientID
 
 /* Show all reviews for a specific user */
-SELECT User.username, Review.comment
-FROM User
-INNER JOIN Review ON User.userID = Review.userID;
+SELECT Users.username, Reviews.comment
+FROM Users
+INNER JOIN Reviews ON Users.userID = Reviews.userID;
 
 /* Show all recipes for a specific user */
-SELECT User.username, Recipe.title
+SELECT Users.username, Recipes.title
 FROM User
-INNER JOIN Recipe ON User.userID = Recipe.userID;
+INNER JOIN Recipes ON User.userID = Recipes.userID;
 
