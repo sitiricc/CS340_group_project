@@ -1,7 +1,7 @@
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
 
-/* Creates a table for users */
+-- Create Users table
 CREATE OR REPLACE TABLE Users (
     userID INT AUTO_INCREMENT UNIQUE NOT NULL,
     username VARCHAR(255) NOT NULL,
@@ -11,7 +11,7 @@ CREATE OR REPLACE TABLE Users (
     PRIMARY KEY (userID)
 );
 
-/* Creates a table for ingredients */
+-- Create Ingredients Table
 CREATE OR REPLACE TABLE Ingredients (
     ingredientID INT AUTO_INCREMENT UNIQUE NOT NULL,
     name VARCHAR(255) NOT NULL,
@@ -20,7 +20,7 @@ CREATE OR REPLACE TABLE Ingredients (
     PRIMARY KEY (ingredientID)
 );
 
-/* Creates a table for recipes */
+--  Create Recipes table
 CREATE OR REPLACE TABLE Recipes (
     recipeID INT AUTO_INCREMENT UNIQUE NOT NULL,
     title VARCHAR(255) NOT NULL,
@@ -33,7 +33,7 @@ CREATE OR REPLACE TABLE Recipes (
     PRIMARY KEY (recipeID)
 );
 
-/* Creates a table for reviews */
+-- Create Reviews table
 CREATE OR REPLACE TABLE Reviews (
     reviewID INT AUTO_INCREMENT UNIQUE NOT NULL,
     recipeID INT,
@@ -42,21 +42,21 @@ CREATE OR REPLACE TABLE Reviews (
     comment VARCHAR(255),
     datePosted DATE,
     PRIMARY KEY (reviewID),
-    FOREIGN KEY (recipeID) REFERENCES Recipes(recipeID),
-    FOREIGN KEY (userID) REFERENCES Users(userID)
+    FOREIGN KEY (recipeID) REFERENCES Recipes(recipeID) ON DELETE CASCADE,
+    FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE
 );
 
-/* Creates a table for recipe ingredients */
+-- Create Recipe Ingredients table
 CREATE OR REPLACE TABLE RecipeIngredients (
     recipeID INT,
     ingredientID INT,
     quantity VARCHAR(255),
     PRIMARY KEY (recipeID, ingredientID),
-    FOREIGN KEY (recipeID) REFERENCES Recipes(recipeID),
-    FOREIGN KEY (ingredientID) REFERENCES Ingredients(ingredientID)
+    FOREIGN KEY (recipeID) REFERENCES Recipes(recipeID) ON DELETE CASCADE,
+    FOREIGN KEY (ingredientID) REFERENCES Ingredients(ingredientID) ON DELETE CASCADE
 );
 
-/* Inserts sample data into the Users table */
+-- Inserts sample data into the Users table
 INSERT INTO Users (
     userID, 
     username, 
@@ -70,7 +70,7 @@ VALUES
     (3, 'HonestShamrock', 'Lucky.day777@gmail.com', 'xY3&lP!8zN', '2011-02-09'),
     (4, 'SpicyEnchilada', 'Spicy.enchilada@gmail.com', '4B%aT1o@Zx', '2016-12-01');
 
-/* Inserts sample data into the Ingredients table */
+-- Inserts sample data into the Ingredients table
 INSERT INTO Ingredients (
     ingredientID, 
     name, 
@@ -83,7 +83,7 @@ VALUES
     (238221, 'Dragon Fruit', 'Fruit', 'cup, whole'),
     (934784, 'Matcha', 'Seasoning', 'tsp');
 
-/* Inserts sample data into the Recipes table */
+-- Inserts sample data into the Recipes table
 INSERT INTO Recipes (
     recipeID, 
     title, 
@@ -100,7 +100,7 @@ VALUES
     (48672831, 'Matcha Latte', 'Enjoy this matcha latte during those cold winter months. Easy to make!', 3, 0, 1, 'Warm up some milk for 30 seconds in the microwave or until warm in the stove, grind up and prepare the matcha until frothy and pour over warm milk.', '2018-06-19'),
     (58540234, 'Basil Pesto', 'Impress your Italian mother-in-law with this rich, decadent pesto sauce. Bada bing, bada boom!', 15, 0, 8, 'In a food processor, combine basil, pine nuts, parmesan and garlic. Add olive oil until smooth. Pour over pasta.', '2013-11-30');
 
-/* Inserts sample data into the Reviews table */
+-- Inserts sample data into the Reviews table 
 INSERT INTO Reviews (
     reviewID, 
     recipeID, 
@@ -115,7 +115,7 @@ VALUES
     (3490121, 48672831, 3, 4, 'So simple to make. If you’re a beginner in the world of matcha, this recipe will help get you prepared. I make this one in the mornings and take to work in a big tumbler.', '2020-12-21'),
     (4968425, 58540234, 4, 2, 'My mother-in-law was not that impressed, but it was still tasty. Next time, I would add more basil and less olive oil.', '2019-05-08');
 
-/* Inserts sample data into the RecipeIngredients table */
+-- Inserts sample data into the RecipeIngredients table
 INSERT INTO RecipeIngredients (
     recipeID, 
     ingredientID, 
