@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingredients</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<body>
+  <header>
+    <h1>GourmetBytes</h1>
+  </header>
+  <nav>
+    <a href='./index.html'>Recipe</a>
+    <a href='./ingredient.html'>Ingredient</a>
+    <a href='./review.html'>Review</a>
+    <a href='./user.html'>User</a>
+    <a href='./recipeIngredient.html'>RecipeIngredient</a>
+  </nav>
+  <h2>Manage Ingredients</h2>
+  <form>
+    <label for='name'>Ingredient Name</label>
+    <input
+      type='text'
+      id='name'
+      autofocus
+      placeholder='Enter name here'
+    />
+    <label for="category">Category</label>
+    <select name="category" id="category">
+      <option value="">Select Category</option>
+      <option value='general'>General</option>
+      <option value='dairy'>Dairy</option>
+      <option value='fruit'>Fruit</option>
+      <option value='vegetable'>Vegetable</option>
+    </select>
+    <label for="uom">Unit Of Measurement</label>
+    <select name="uom" id="uom">
+      <option value=''>Select Unit of Measurement</option>
+      <option value='cup'>Cup</option>
+      <option value='teaspoon'>Teaspoon</option>
+      <option value='quart'>Quart</option>
+      <option value='gallon'>Gallon</option>
+    </select>
+    <input class='btn' type='submit' />
+  </form>
+  <div class='tables'>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Unit of Measurement</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Salt</td>
+          <td>General</td>
+          <td>teaspoon</td>
+          <td>
+            <div class='actions'>
+              <button>Edit</button>
+              <button>Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

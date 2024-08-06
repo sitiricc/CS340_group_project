@@ -1,0 +1,58 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 5px;
+}
+
+.time {
+  display: flex;
+  justify-content: space-between;
+}
+
+.time input {
+  width: 70px;
+}
+
+.duh {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  width: 70px;
+  color: white;
+  background-color: black;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+table, tr, th, td {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 5px;
+  width: 150px;
+}
+
+.tables {
+  margin: 10px 0;
+  width: 50%;
+}
+
+.ellipsis{
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: center;
+}

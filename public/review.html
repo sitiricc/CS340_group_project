@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reviews</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<body>
+  <header>
+    <h1>GourmetBytes</h1>
+  </header>
+  <nav>
+    <a href='./index.html'>Recipe</a>
+    <a href='./ingredient.html'>Ingredient</a>
+    <a href='./review.html'>Review</a>
+    <a href='./user.html'>User</a>
+    <a href='./recipeIngredient.html'>RecipeIngredient</a>
+  </nav>
+  <h2>Manage Reviews</h2>
+  <form>
+    <label for='recipeID'>Recipe ID</label>
+    <select name="recipeID" id="recipeID">
+      <option value=''>Select Recipe</option>
+      <option value='1'>Spaghetti</option>
+    </select>
+    <label for='userID'>User ID</label>
+    <select name="userID" id="userID">
+      <option value="">Select a user</option>
+      <option value="1">user.name</option>
+    </select>
+    <label for='rating'>Rating</label>
+    <input type='number' id='rating'/>
+    <label for="review">Review</label>
+    <textarea
+      name="review"
+      id="review"
+      placeholder='Enter review here. Maximum characters is 500.'
+      maxlength='500'
+      rows='10'
+      ></textarea>
+    <input class='btn' type='submit' />
+  </form>
+  <div class='tables'>
+    <table>
+      <thead>
+        <tr>
+          <th>Review ID</th>
+          <th>Recipe ID</th>
+          <th>User ID</th>
+          <th>Rating</th>
+          <th>Review</th>
+          <th>Date Posted</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>5</td>
+          <td>This is a good recipe.</td>
+          <td>2024-07-26</td>
+          <td>
+            <div class='actions'>
+              <button>Edit</button>
+              <button>Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

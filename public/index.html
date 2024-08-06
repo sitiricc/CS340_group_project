@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipes</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<body>
+  <header>
+    <h1>GourmetBytes</h1>
+  </header>
+  <nav>
+    <a href='./index.html'>Recipe</a>
+    <a href='./ingredient.html'>Ingredient</a>
+    <a href='./review.html'>Review</a>
+    <a href='./user.html'>User</a>
+    <a href='./recipeIngredient.html'>RecipeIngredient</a>
+  </nav>
+  <h2>Manage Recipes</h2>
+  <form>
+    <label for='name'>Recipe Name</label>
+    <input
+      type='text'
+      id='name'
+      autofocus
+      placeholder='Enter name here'
+    />
+    <label for='description'>Description</label>
+    <textarea
+      name="description"
+      id="description"
+      placeholder='Enter description here. Maximum characters is 500.'
+      maxlength='500'
+      rows='10'
+      ></textarea>
+    <div class='time'>
+      <div class='duh'>
+        <label for='prep'>Prep Time</label>
+        <input type='number' id='prep'/>
+      </div>
+       <div class='duh'>
+         <label for='cook'>Cook Time</label>
+         <input type='number' id='cook'/>
+       </div>
+       <div class='duh'>
+         <label for='serve'>Serving Size</label>
+         <input type='number' id='serve'/>
+       </div>
+    </div>
+    <label for="instructions">Instructions</label>
+    <textarea
+      name="instructions"
+      id="instructions"
+      placeholder='Enter recipe instructions here. Maximum characters is 1000.'
+      maxlength='1000'
+      rows='20'
+      ></textarea>
+      <input class='btn' type='submit' />
+  </form>
+  <div class='tables'>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Prep Time</th>
+          <th>Cook Time</th>
+          <th>Serving Size</th>
+          <th>Instructions</th>
+          <th>Date Posted</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Spaghetti</td>
+          <td>Italian meal that tastes good</td>
+          <td>30</td>
+          <td>30</td>
+          <td>8</td>
+          <td>Cook the spaghetti. Throw at wall. If it sticks it is ready.</td>
+          <td>2024-07-26</td>
+          <td>
+            <div class='actions'>
+              <button>Edit</button>
+              <button>Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

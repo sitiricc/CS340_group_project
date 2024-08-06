@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<body>
+  <header>
+    <h1>GourmetBytes</h1>
+  </header>
+  <nav>
+    <a href='./index.html'>Recipe</a>
+    <a href='./ingredient.html'>Ingredient</a>
+    <a href='./review.html'>Review</a>
+    <a href='./user.html'>User</a>
+    <a href='./recipeIngredient.html'>RecipeIngredient</a>
+  </nav>
+  <h2>Manage Users</h2>
+  <form>
+    <label for='name'>Username</label>
+    <input
+      type='text'
+      id='name'
+      autofocus
+      placeholder='Enter username here'
+    />
+    <label for='email'>Email</label>
+    <input
+      type='email'
+      id='email'
+      placeholder='Enter email here'
+    />
+    <label for='password'>Password</label>
+    <input
+      type='password'
+      id='password'
+      placeholder='Enter email here'
+    />
+    <input class='btn' type='submit' />
+  </form>
+  <div class='tables'>
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Date Joined</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>user.name</td>
+          <td>user@email.com</td>
+          <td>secret</td>
+          <td>2024-07-26</td>
+          <td>
+            <div class='actions'>
+              <button>Edit</button>
+              <button>Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

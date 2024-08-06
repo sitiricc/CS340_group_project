@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Ingredients</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<body>
+  <header>
+    <h1>GourmetBytes</h1>
+  </header>
+  <nav>
+    <a href='./index.html'>Recipe</a>
+    <a href='./ingredient.html'>Ingredient</a>
+    <a href='./review.html'>Review</a>
+    <a href='./user.html'>User</a>
+    <a href='./recipeIngredient.html'>RecipeIngredient</a>
+  </nav>
+  <h2>Manage Recipe Ingredients</h2>
+  <form>
+    <label for='recipeID'>Recipe ID</label>
+    <select name="recipeID" id="recipeID">
+      <option value=''>Select Recipe</option>
+      <option value='1'>Spaghetti</option>
+    </select>
+    <label for='ingredientID'>Ingredient ID</label>
+    <select name="ingredientID" id="ingredientID">
+      <option value="">Select a user</option>
+      <option value="1">Salt</option>
+    </select>
+    <label for='quantity'>Quantity</label>
+    <input type='number' id='quantity'/>
+    <input class='btn' type='submit' />
+  </form>
+  <div class='tables'>
+    <table>
+      <thead>
+        <tr>
+          <th>Recipe ID</th>
+          <th>Ingredient ID</th>
+          <th>Quantity</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>6</td>
+          <td>
+            <div class='actions'>
+              <button>Edit</button>
+              <button>Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
